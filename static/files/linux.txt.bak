@@ -1,0 +1,16 @@
+插看redis进程
+ps -ef | grep redis
+
+关闭redis进程
+kill -9 进程号
+
+重新启动redis-server
+src/redis-server ./redis.conf 
+
+查看防火墙端口
+firewall-cmd --zone=public --list-ports
+
+将6379端口打开
+firewall-cmd --zone=public --add-port=6379/tcp --permanent
+
+重新启动防火墙

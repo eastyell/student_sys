@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加学员信息</title>
+</head>
+<body>
+  <h3>请填写学生信息：</h3>
+  <hr/>
+  <br>
+   <form action="" method="post">
+        {% csrf_token %}
+        <table>
+        {{ form }}
+        </table>
+        <br>
+        <hr/>
+        <br>
+        &nbsp;&nbsp;&nbsp;
+        <a href="/show_stu"><input type="button" value="返回"></a>
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="submit" value="提交">
+    </form>
+
+</body>
+</html>

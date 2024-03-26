@@ -26,7 +26,7 @@ class Student(models.Model):
     created_time = models.DateTimeField(auto_now_add=True, editable=False, verbose_name='创建时间')
 
     def __str__(self):
-        return '<student:{}>'.format(self.name)
+        return '<学员:{}>'.format(self.name)
 
     @classmethod
     def get_all(cls):
@@ -34,3 +34,4 @@ class Student(models.Model):
 
     class Meta:
         verbose_name = verbose_name_plural = '学员信息'
+        ordering = ['id']

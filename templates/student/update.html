@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>更新学生信息</title>
+</head>
+<body>
+<h3>请修改学生信息：</h3>
+<hr/>
+<form action="/update_stu/{{ student.id }}" method="post">
+    {% csrf_token %}
+<!--    css3 disabled属性 不可选状态/禁用元素-->
+{#    <p>#}
+{#        姓名:<input type="text"  value="{{ student.name }}" name='name'>#}
+{#    </p>#}
+{#    <p>#}
+{#        性别:<input type="text" value="{{ student.sex }}" name='sex'>#}
+{#    </p>#}
+{#    <p>#}
+{#        职业:<input type="text" value="{{ student.profession }}" name='profession'>#}
+{#    </p>#}
+{#    <p>#}
+{#        email:<input type="email" value="{{ student.email }}" name='email'>#}
+{#    </p>#}
+{#    <p>#}
+{#        电话:<input type="tel" value="{{ student.phone }}"  name="phone">#}
+{#    </p>#}
+{#    <p>#}
+{#        审核状态:<input type="text" value="{{ student.get_status_display }}" disabled="disabled">#}
+{#    </p>#}
+    <table>
+        {{ form }}
+    </table>
+    <br>
+    <hr/>
+    <p>
+       &nbsp;&nbsp;&nbsp;
+       <a href="/show_stu"><input type="button" value="返回"></a>
+       &nbsp;&nbsp;&nbsp;&nbsp;
+       <input type="submit" value="提交">
+    </p>
+
+</form>
+</body>
+</html>

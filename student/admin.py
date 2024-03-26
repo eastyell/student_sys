@@ -8,6 +8,8 @@ class StudentAdmin(admin.ModelAdmin):
                     'status', 'created_time')
     list_filter = ('sex', 'status', 'created_time')
     search_fields = ('name', 'profession')
+    list_display_links = ('name',)
+    list_editable = ('status', 'sex')
     fieldsets = (
         (None, {
             'fields': (

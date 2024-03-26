@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页</title>
+    <style>
+               #pwd input{
+           margin-left:23px
+        }
+    </style>
+</head>
+<body>
+<form action="/login/" method="post">
+<!--传统的html登录表单-->
+    <p>
+        用户名： <input type="text" name="username" value="{{ username }}">
+        <span> {{ error }}</span>
+    </p>
+    <p id=pwd>
+        密码: <input type="password" name="password" value="{{ password }}">
+    </p>
+    <p>
+        记住用户名: <input type="checkbox" name="isSaved">
+    </p>
+    <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="../reg"><input type="button" value="注册"></a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="submit" value="登录">
+    </p>
+</form>
+
+</body>
+</html>

@@ -5,22 +5,92 @@
     <title>学员管理系统</title>
 </head>
 <body>
-<h3><a href="/admin/">后台管理</a></h3>
+<h3><a href="/admin/">后台管理</a>  <a align="right" href="/logout">退出</a></h3>
 <hr/>
-    <ul>
-        <h3>学生信息：</h3>
-        {% for student in students %}
-            <li> {{ student.name }} - {{ student.get_status_display }}
-            {{ student.profession }}
-            </li>
-        {% endfor %}
-    </ul>
-    <hr/>
-    <form action="/" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <hr/>
-        <input type="submit" value="提交">
-    </form>
+<br>
+<form action="/show_stu/" method="post">
+    {{ form_search }}
+    <input type="submit" value="查询一下">
+{#    {% load cache %}#}
+{#    {% cache 30 test %}#}
+{#    <p>我是缓存的 {{ t1 }}</p>#}
+{#    {% endcache %}#}
+{#    <h4>#}
+{#        我是没有缓存的{{ t1 }}#}
+{#    </h4>#}
+</form>
+{#<ul>#}
+{#    {% for error in errors %}#}
+{#    <li>#}
+{#        {{ error }}#}
+{#    </li>#}
+{#    {% endfor %}#}
+{#</ul>#}
+  <h3>学生信息：</h3>
+  <hr/>
+  <table border="0">
+    <tr>
+        <th>id</th>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>职业</th>
+        <th>email</th>
+        <th>qq</th>
+        <th>电话</th>
+        <th>审核状态</th>
+        <th>编辑</th>
+    </tr>
+    {% for student in page %}
+    <tr>
+        <td>{{ student.id }}</td>
+        <td>{{ student.name }}</td>
+        <td>{{ student.get_sex_display }}</td>
+        <td>{{ student.profession }}</td>
+        <td>{{ student.email }}</td>
+        <td>{{ student.qq }}</td>
+        <td>{{ student.phone }}</td>
+        <td>{{ student.get_status_display }}</td>
+        <td>
+            <a href="/update_stu/{{ student.id }}">更新</a>
+            <a href="/delete_stu/{{ student.id }}">删除</a>
+        </td>
+    </tr>
+     {% endfor %}
+    </table>
+<!--判断是否有上一页，然后拼接关于page的查询字符串-->
+<br>
+{% if page.has_previous %}
+{# 得到上一页的页码编号 #}
+  <a href="/show_stu?page={{ page.previous_page_number }}">上一页</a>
+{% else %}
+上一页
+{% endif %}
+{# 在页面范围内循环选择一个页面号码 #}
+{% for p in paginator.page_range %}
+{# 如果页面编号等于当前页码序号 #}
+    {% if p == page.number %}
+        {{ p }}
+    {% else %}
+         {# 否则跳转到页码相对应的页面 #}
+        <a href="/show_stu?page={{ p }}">{{ p }}</a>
+    {% endif %}
+{% endfor %}
+{% if page.has_next %}
+  <a href="/show_stu?page={{ page.next_page_number }}">下一页</a>
+{% else %}
+下一页
+{% endif %}
+<hr/>
+   <p>
+      <a href="../add_stu">
+        <input type="button" value="增加">
+      </a>
+   </p>
+<form method="post" action="../upload/" enctype="multipart/form-data">
+     {% csrf_token %}
+     <input type="file" name="myfiles" multiple="">
+     <input type="submit" value="上传文件">
+</form>
+<h4><a href="/down_csv_view/">导出学生信息(CSV)</a></h4>
 </body>
 </html>

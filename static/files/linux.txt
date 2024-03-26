@@ -1,0 +1,48 @@
+https://192.168.0.128:39389/b9161f2e
+etssju2a   999cdf42
+
+
+插看redis进程
+ps -ef | grep redis
+
+关闭redis进程
+kill -9 进程号
+
+重新启动redis-server
+src/redis-server ./redis.conf 
+
+查看防火墙端口
+firewall-cmd --zone=public --list-ports
+
+将6379端口打开
+firewall-cmd --zone=public --add-port=6379/tcp --permanent
+
+重新启动防火墙
+systemctl restart firewalld
+
+
+启动镜像 
+-d：后台运行容器。
+-d：后台运行容器。
+docker run -d -p 8080:80 --name mynginx nginx
+
+停止一个正在运行的容器。指定容器名或容器ID即可停止容器。
+docker stop mynginx
+
+删除一个或多个容器。指定容器名或容器ID即可删除容器。
+docker rm mynginx
+
+在正在运行的容器中执行命令。
+-it：以交互式方式打开终端。
+mynginx：指定容器名。
+docker exec -it mynginx bash
+
+查看已关闭的容器
+docker ps -a | grep 'Exited'
+
+重启已关闭的容器
+my_container是容器的名称或 ID
+docker start my_container
+
+查看运行中的容器
+docker ps -a
